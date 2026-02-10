@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 33% 95%;
+    --foreground: 25 35% 12%;
+
+    --card: 36 38% 91%;
+    --card-foreground: 25 35% 12%;
+
+    --popover: 36 38% 93%;
+    --popover-foreground: 25 35% 12%;
+
+    --primary: 165 55% 30%;
+    --primary-foreground: 36 33% 95%;
+
+    --secondary: 36 40% 85%;
+    --secondary-foreground: 25 35% 12%;
+
+    --muted: 36 20% 88%;
+    --muted-foreground: 25 15% 40%;
+
+    --accent: 38 85% 52%;
+    --accent-foreground: 25 35% 12%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 36 30% 78%;
+    --input: 36 30% 78%;
+    --ring: 165 55% 30%;
+
+    --radius: 0.5rem;
+
+    --gold: 38 85% 52%;
+    --gold-foreground: 25 35% 12%;
+    --parchment: 36 45% 88%;
+    --parchment-dark: 30 35% 75%;
+    --ink: 25 40% 18%;
+    --ink-light: 25 20% 35%;
+    --teal: 165 55% 30%;
+    --teal-light: 165 45% 45%;
+    --compass: 15 60% 40%;
+
+    --sidebar-background: 36 38% 91%;
+    --sidebar-foreground: 25 35% 12%;
+    --sidebar-primary: 165 55% 30%;
+    --sidebar-primary-foreground: 36 33% 95%;
+    --sidebar-accent: 36 40% 85%;
+    --sidebar-accent-foreground: 25 35% 12%;
+    --sidebar-border: 36 30% 78%;
+    --sidebar-ring: 165 55% 30%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--gold)), hsl(38, 70%, 65%), hsl(var(--gold)));
+  }
+
+  .bg-parchment-texture {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(ellipse at 20% 50%, hsl(var(--parchment) / 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(var(--parchment-dark) / 0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, hsl(var(--gold) / 0.05) 0%, transparent 50%);
+  }
+
+  .card-scroll {
+    @apply relative rounded-lg border border-border p-6;
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--secondary)));
+    box-shadow:
+      0 4px 20px -4px hsl(var(--ink) / 0.08),
+      inset 0 1px 0 hsl(var(--parchment) / 0.5);
+  }
+
+  .card-scroll::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-1 rounded-t-lg;
+    background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--teal)), hsl(var(--gold)));
+  }
+
+  .journey-dot {
+    @apply w-4 h-4 rounded-full border-2;
+    border-color: hsl(var(--gold));
+    background: hsl(var(--accent));
+    box-shadow: 0 0 12px hsl(var(--gold) / 0.4);
+  }
+
+  .journey-line {
+    border-left: 2px dashed hsl(var(--parchment-dark));
+  }
+
+  .btn-adventure {
+    @apply font-display font-semibold tracking-wider uppercase text-sm px-8 py-3 rounded-lg transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--teal-light)));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 4px 15px hsl(var(--teal) / 0.3);
+  }
+
+  .btn-adventure:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px hsl(var(--teal) / 0.4);
+  }
+
+  .btn-gold {
+    @apply font-display font-semibold tracking-wider uppercase text-sm px-8 py-3 rounded-lg transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(38, 70%, 58%));
+    color: hsl(var(--ink));
+    box-shadow: 0 4px 15px hsl(var(--gold) / 0.3);
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px hsl(var(--gold) / 0.4);
+  }
+
+  .section-divider {
+    @apply w-full h-px my-0;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), hsl(var(--gold) / 0.4), hsl(var(--border)), transparent);
+  }
+
+  .compass-icon {
+    color: hsl(var(--compass));
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+}
